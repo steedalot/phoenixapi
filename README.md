@@ -6,6 +6,8 @@ API für verschiedene Tools, die man im Unterricht gelegentlich braucht.
 
 Alle Anfragen werden per **POST**-Anfragen an den Server gemacht. **GET**-Anfragen werden nicht bearbeitet.
 
+Standardpfad: `api.phoenixgymnasium.de`.
+
 ### Parameter
 
 **type**
