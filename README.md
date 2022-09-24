@@ -4,7 +4,7 @@ API für verschiedene Tools, die man im Unterricht gelegentlich braucht.
 
 ## Technisches / API
 
-Alle Anfragen werden per **POST**-Anfragen an den Server gemacht. **GET**-Anfragen werden nicht bearbeitet.
+Anfragen per **POST** und **GET** werden vom Server unterstützt.
 
 Standardpfad: `api.phoenixgymnasium.de`.
 
@@ -14,10 +14,12 @@ Standardpfad: `api.phoenixgymnasium.de`.
 
 Alle Anfragen **müssen** den Parameter _type_ enthalten. Mögliche Werte sind:
 * _qr_
-
+  
   Generiert einen QR-Code. Der Parameter _text_ muss gesetzt sein.
+* _epc_
 
- 
+  Generiert einen Code für Online-Banking.
+
 **text**
 
 Nötig, um bei einem QR-Code den Inhalt zu übertragen.
