@@ -4,49 +4,39 @@ ini_set('display_errors', 'On');
 
 require "lib/qrlib.php";
 
+$ecc = "Q";
+$text = "";
 
 
-$json = file_get_contents('php://input');
-$data = json_decode($json);
+if (isset($_GET['type'])) {
 
+    switch ($_GET['type']) {
 
-if (isset($data->type)) {
-    
-    switch ($data->type) {
+        case "text":
 
-        case "qr":
+            $text  = $_GET['text'];
+            break;
 
-            $text = "";
-            $ecc = "Q";
-    
-            if (isset($data->text)) {
+        case "epc":
 
-                $text = $data->text;
-                
+            $text = "BCD\n001\n2\nSCT\n";
+            $text = $text.$_GET['bic']."\n";
+            $text = $text.$_GET['empfaenger']."\n";
+            $text = $text.$_GET['iban']."\n";
+            if (isset($_GET['betrag'])) {
+                $text = $text.$_GET['betrag'];
             }
+            $text = $text."\n";
+            $text = $text."\n\n";
+            $text = $text.$_GET['zweck']."\n";
 
-            else {
-                $text = "https://www.pgwv.de";
-            }
-
-
-            if (isset($data->ecc)) {
-
-                $ecc = $data->ecc;
-
-            }
-
-            else {
-
-                $ecc = "Q";
-
-            }
-
-            QRcode::png($text, false, $ecc, 4, 2);
+            $ecc = "M";
 
             break;
 
     }
+
+    QRcode::png($text, false, $ecc, 4, 2);
 
 }
 
