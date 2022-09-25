@@ -21,14 +21,14 @@ if (isset($_GET['type'])) {
 
             $text = "BCD\n001\n2\nSCT\n";
             $text = $text.$_GET['bic']."\n";
-            $text = $text.$_GET['empfaenger']."\n";
+            $text = $text.str_replace("_"," ", $_GET['empfaenger'])."\n";
             $text = $text.$_GET['iban']."\n";
             if (isset($_GET['betrag'])) {
                 $text = $text.$_GET['betrag'];
             }
             $text = $text."\n";
             $text = $text."\n\n";
-            $text = $text.$_GET['zweck']."\n";
+            $text = $text.str_replace("_"," ",$_GET['zweck'])."\n";
 
             $ecc = "M";
 
