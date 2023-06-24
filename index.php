@@ -12,12 +12,12 @@ if (isset($_GET['type'])) {
 
     switch ($_GET['type']) {
 
-        case "text":
+        case "qr_text":
 
             $text  = $_GET['text'];
             break;
 
-        case "epc":
+        case "qr_epc":
 
             $text = "BCD\n001\n2\nSCT\n";
             $text = $text.$_GET['bic']."\n";
@@ -33,6 +33,7 @@ if (isset($_GET['type'])) {
             $ecc = "M";
 
             break;
+        
 
     }
 
