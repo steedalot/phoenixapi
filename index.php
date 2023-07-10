@@ -1,11 +1,19 @@
 <?php
 
+include "config.php";
+$header = "Content-Type: application/json;charset=utf-8";
+
 ini_set('display_errors', 'On');
+
+
+require "rb.php";
+
+R::setup('mysql:host='.MYSQL_HOST.';dbname='.MYSQL_DATABASE, MYSQL_USER, MYSQL_PASS);
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);
 
-if (isset($data->prompt)) {
+if (isset($data->key)) {
 
 
 
