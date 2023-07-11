@@ -8,6 +8,10 @@ __Die API nimmt nur POST-Anfragen entgegen.__
 
 ### Parameter
 
+**action**
+
+Mögliche Aktionen sind _chat_, _add_ und _modify_. (Vorsicht: _add_/_modify_ müssen noch genauer definiert werden.)
+
 **id**
 
 Sie gibt an, um welches Objekt bzw. um welches Dokument es sich handelt. Die **id** ist immer eine mindestens vierstellige Zahlenfolge.
