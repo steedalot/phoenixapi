@@ -21,7 +21,7 @@ Sie gibt an, um welches Objekt bzw. um welches Dokument es sich handelt. Die **i
 Der Parameter **chat** ist ein _Array_, dass die folgenden Eigenschaften hat:
 
 Jedes Element des Arrays ist ein _Objekt_ (JSON), dass _Schlüssel: Wert_ Elemente enthält. Diese enthalten chronologisch den kompletten Verlauf des Chats.
-Chatnachrichten haben die _Rolle_ **assistant** oder **user**.
+Chatnachrichten haben die _Rolle_ **assistant** oder **user**. Der Parameter **content** enthält den eigentlichen Text der Nachricht.
 
 Beispiel:
 

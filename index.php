@@ -5,7 +5,7 @@ $header = "Content-Type: application/json;charset=utf-8";
 
 ini_set('display_errors', 'On');
 
-$debug = true;
+$debug = false;
 
 require "rb.php";
 require "Url.php";
@@ -28,12 +28,19 @@ if (isset($data->action) && isset($data->id)) {
 
 
             $message2 = R::load("message", $data->id);
+                if ($message2->id == 0) {
+                    $answer = "Das System konnte dieses Objekt nicht finden.";
+                    $status = 404;
+                    break;
+                }
+
             if ((((int)$message2->chat) - 1000000) > 0) {
                 $message1 = R::load("message", ((int)$message2->chat) - 1000000);
             }
             else {
-                $answer = "Das System konnte diesen Chat nicht finden.";
+                $answer = "Das gesuchte Objekt war nicht kompatibel.";
                 $status = 404;
+                break;
             }
 
             $messages = [
@@ -85,7 +92,8 @@ if (isset($data->action) && isset($data->id)) {
 
             $answer = json_encode($json_reply);
             $status = 200;
-
+            
+            break;
 
             
 
