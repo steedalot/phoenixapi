@@ -1,11 +1,11 @@
 <?php
 
 include "config.php";
-$header = "Content-Type: application/json;charset=utf-8";
 
 ini_set('display_errors', 'On');
 
 $debug = false;
+$header = true;
 
 require "rb.php";
 require "Url.php";
@@ -31,6 +31,7 @@ if (isset($data->action) && isset($data->id)) {
                 if ($message2->id == 0) {
                     $answer = "Das System konnte dieses Objekt nicht finden.";
                     $status = 404;
+                    $header = false;
                     break;
                 }
 
@@ -40,6 +41,7 @@ if (isset($data->action) && isset($data->id)) {
             else {
                 $answer = "Das gesuchte Objekt war nicht kompatibel.";
                 $status = 404;
+                $header = false;
                 break;
             }
 
@@ -104,7 +106,7 @@ if (isset($data->action) && isset($data->id)) {
 }
 
 else {
-    
+    $header = false;
     $status = 303;
     $answer = "<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"Refresh\" content=\"0; URL='https://github.com/steedalot/phoenixapi'\">\n</head>\n<body></body>\n</html>";
 
@@ -112,6 +114,10 @@ else {
 }
 
 http_response_code($status);
+if ($header) {
+    header("Content-Type: application/json; charset=utf-8");
+}
+header("Access-Control-Allow-Origin: *");
 echo $answer;
 
 ?>
