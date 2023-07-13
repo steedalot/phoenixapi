@@ -118,6 +118,9 @@ if ($header) {
     header("Content-Type: application/json; charset=utf-8");
 }
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: *");
 echo $answer;
 
 ?>
