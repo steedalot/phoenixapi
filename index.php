@@ -5,7 +5,18 @@ include "config.php";
 ini_set('display_errors', 'On');
 
 $debug = false;
-$header = true;
+$json_header = true;
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS' && isset($_SERVER['HTTP_ORIGIN'])) {
+    // This is a preflight request
+    // Handle the CORS preflight response here
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Max-Age: 86400");
+    header("Access-Control-Allow-Methods: POST");
+    header("Access-Control-Allow-Headers: Content-Type");
+    exit(); // End the script here as the preflight response doesn't require any further processing
+}
+
 
 require "rb.php";
 require "Url.php";
@@ -31,7 +42,7 @@ if (isset($data->action) && isset($data->id)) {
                 if ($message2->id == 0) {
                     $answer = "Das System konnte dieses Objekt nicht finden.";
                     $status = 404;
-                    $header = false;
+                    $json_header = false;
                     break;
                 }
 
@@ -41,7 +52,7 @@ if (isset($data->action) && isset($data->id)) {
             else {
                 $answer = "Das gesuchte Objekt war nicht kompatibel.";
                 $status = 404;
-                $header = false;
+                $json_header = false;
                 break;
             }
 
@@ -106,21 +117,15 @@ if (isset($data->action) && isset($data->id)) {
 }
 
 else {
-    $header = false;
+    $json_header = false;
     $status = 303;
     $answer = "<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"Refresh\" content=\"0; URL='https://github.com/steedalot/phoenixapi'\">\n</head>\n<body></body>\n</html>";
-
-
 }
 
 http_response_code($status);
-if ($header) {
+if ($json_header) {
     header("Content-Type: application/json; charset=utf-8");
 }
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: *");
 echo $answer;
 
 ?>
