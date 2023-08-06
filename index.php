@@ -8,13 +8,11 @@ $debug = false;
 $json_header = true;
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS' && isset($_SERVER['HTTP_ORIGIN'])) {
-    // This is a preflight request
-    // Handle the CORS preflight response here
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
     header("Access-Control-Max-Age: 86400");
     header("Access-Control-Allow-Methods: POST");
     header("Access-Control-Allow-Headers: Content-Type");
-    exit(); // End the script here as the preflight response doesn't require any further processing
+    exit();
 }
 
 
