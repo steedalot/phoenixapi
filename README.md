@@ -51,7 +51,7 @@ Die Länge des letzten Prompts. Hiermit ist der komplette Chatverlauf gemeint, d
                 
 **object**
 
-Gibt die Bezeichnung des aktuellen Objekts / Dokuments zurück, um das es geht (beispielsweise _Augustustatue von Primaporta_).
+Gibt die Bezeichnung des aktuellen Objekts / Dokuments zurück, um das es geht (beispielsweise _Augustusstatue von Primaporta_).
 
 **role**
 
