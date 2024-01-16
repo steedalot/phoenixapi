@@ -83,7 +83,7 @@ if (isset($data->action) && isset($data->id)) {
             }
 
             $chat = $open_ai->chat([
-                "model" => "gpt-3.5-turbo-16k",
+                "model" => "gpt-3.5-turbo-1106",
                 "messages" => $messages
             ]);
 
